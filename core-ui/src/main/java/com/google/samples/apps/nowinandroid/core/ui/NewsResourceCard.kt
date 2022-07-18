@@ -63,8 +63,8 @@ import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.Author
 import com.google.samples.apps.nowinandroid.core.model.data.NewsResource
-import com.google.samples.apps.nowinandroid.core.model.data.NewsResourceType.Article
 import com.google.samples.apps.nowinandroid.core.model.data.Topic
+import com.google.samples.apps.nowinandroid.core.model.data.previewNewsResources
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -275,10 +275,10 @@ fun NewsResourceTopics(
     ) {
         for (topic in topics) {
             NiaTopicTag(
-                followed = true, // Todo
-                onFollowClick = { }, // Todo
-                onUnfollowClick = { }, // Todo
-                onBrowseClick = { }, // Todo
+                followed = true, // ToDo: Check if topic is followed
+                onFollowClick = { }, // ToDo
+                onUnfollowClick = { }, // ToDo
+                onBrowseClick = { }, // ToDo
                 text = { Text(text = topic.name.uppercase(Locale.getDefault())) }
             )
         }
@@ -310,48 +310,7 @@ fun BookmarkButtonBookmarkedPreview() {
 fun ExpandedNewsResourcePreview() {
     NiaTheme {
         Surface {
-            NewsResourceCardExpanded(newsResource, true, {}, {})
+            NewsResourceCardExpanded(previewNewsResources[0], true, {}, {})
         }
     }
 }
-
-private val newsResource = NewsResource(
-    id = "1",
-    episodeId = "1",
-    title = "Title",
-    content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-        " incididunt ut labore et dolore magna aliqua. Habitant morbi tristique senectus et netus" +
-        " et malesuada fames.",
-    url = "url",
-    headerImageUrl = "https://i.ytimg.com/vi/WL9h46CymlU/maxresdefault.jpg",
-    publishDate = Instant.DISTANT_FUTURE,
-    type = Article,
-    authors = listOf(
-        Author(
-            id = "1",
-            name = "Name",
-            imageUrl = "",
-            twitter = "",
-            mediumPage = "",
-            bio = "",
-        )
-    ),
-    topics = listOf(
-        Topic(
-            id = "1",
-            name = "Accessibility",
-            shortDescription = "Short description",
-            longDescription = "Long description",
-            url = "URL",
-            imageUrl = "image URL"
-        ),
-        Topic(
-            id = "2",
-            name = "Compose",
-            shortDescription = "Short description",
-            longDescription = "Long description",
-            url = "URL",
-            imageUrl = "image URL"
-        )
-    )
-)
